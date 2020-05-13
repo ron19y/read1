@@ -68,6 +68,7 @@ export default {
     }
   },
   mounted () {
+    console.log(process.env.VUE_APP_BASE_URL)
     home().then(res => {
       if (res && res.status === 200) {
         const data = res.data
