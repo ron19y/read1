@@ -15,6 +15,7 @@ export function removeFromBookShelf(book) {
     if (item.itemList) {
       item.itemList = removeAddFromShelf(item.itemList)
     }
+    // console.log(item)
     return item.fileName !== book.fileName
   })
 }

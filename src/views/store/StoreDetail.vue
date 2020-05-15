@@ -65,8 +65,8 @@
       <div class="bottom-btn" @click.stop.prevent="readBook()">{{$t('detail.read')}}</div>
       <div class="bottom-btn" @click.stop.prevent="trialListening()">{{$t('detail.listen')}}</div>
       <div class="bottom-btn" @click.stop.prevent="addOrRemoveShelf()">
-        <span class="icon-check" v-if="inBookShelf"></span>
-        {{inBookShelf ? $t('detail.isAddedToShelf') : $t('detail.addOrRemoveShelf')}}
+        <span class="icon-check" v-show="isInShelf"></span>
+        {{isInShelf ? $t('detail.isAddedToShelf') : $t('detail.addOrRemoveShelf')}}
       </div>
     </div>
     <toast :text="toastText" ref="toast"></toast>
@@ -82,6 +82,8 @@
   import { px2rem, realPx } from '../../utils/utils'
   import Epub from 'epubjs'
   import { getLocalForage } from '../../utils/localForage'
+  import { addToShelf, removeFromBookShelf } from '../../utils/store'
+  import { getBookShelf, saveBookShelf } from '../../utils/localstorage'
 
   global.ePub = Epub
 
@@ -121,17 +123,6 @@
       },
       author() {
         return this.metadata ? this.metadata.creator : ''
-      },
-      inBookShelf() {
-        if (this.bookItem && this.bookShelf) {
-          const flatShelf = (function flatten(arr) {
-            return [].concat(...arr.map(v => v.itemList ? [v, ...flatten(v.itemList)] : v))
-          })(this.bookShelf).filter(item => item.type === 1)
-          const book = flatShelf.filter(item => item.fileName === this.bookItem.fileName)
-          return book && book.length > 0
-        } else {
-          return false
-        }
       }
     },
     data() {
@@ -149,11 +140,36 @@
         toastText: '',
         trialText: null,
         categoryText: null,
-        opf: null
+        opf: null,
+        isInShelf: false
       }
     },
     methods: {
+      inBookShelf() {
+        var bookShelf = getBookShelf()
+        console.log(bookShelf)
+        if (this.bookItem && bookShelf) {
+        console.log('inbook')
+          const flatShelf = (function flatten(arr) {
+            return [].concat(...arr.map(v => v.itemList ? [v, ...flatten(v.itemList)] : v))
+        })(bookShelf).filter(item => item.type === 1)
+          const book = flatShelf.filter(item => item.fileName === this.bookItem.fileName)
+          return book && book.length > 0
+        } else {
+          // console.log('false')
+          return false
+        }
+      },
       addOrRemoveShelf() {
+        if (this.inBookShelf()) {
+          var newBookShelf = removeFromBookShelf(this.bookItem)
+          saveBookShelf(newBookShelf)
+          console.log('in')
+        } else {
+          addToShelf(this.bookItem)
+          console.log('not')
+        }
+        this.isInShelf = !this.isInShelf
       },
       showToast(text) {
         this.toastText = text
@@ -235,6 +251,7 @@
       init() {
         this.fileName = this.$route.query.fileName
         this.categoryText = this.$route.query.category
+        // async network request, remember
         if (this.fileName) {
           detail({
             fileName: this.fileName
@@ -252,6 +269,7 @@
             } else {
               this.showToast(response.data.msg)
             }
+            this.isInShelf = this.inBookShelf()
           })
         }
       },

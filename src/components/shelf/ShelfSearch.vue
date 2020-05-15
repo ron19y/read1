@@ -20,8 +20,9 @@
         </div>
       </div>
       <div class="icon-locale-wrapper" v-if="!ifInputClicked" @click="switchLocale">
-        <span class="icon-cn icon" v-if="lang === 'cn'"></span>
-        <span class="icon-en icon" v-else></span>
+        <!-- <span class="icon-cn icon" v-if="lang === 'cn'"></span>
+        <span class="icon-en icon" v-else></span> -->
+        <span class="icon-search icon"></span>
       </div>
       <div class="cancel-btn-wrapper" @click="onCancelClick" v-else>
         <span class="cancel-text">{{$t('shelf.cancel')}}</span>
@@ -109,6 +110,10 @@ export default {
     onTabClick (id) {
       this.selectedTab = id
     }
+  },
+  mounted() {
+    console.log('df')
+    setLocalStorage('locale', 'en')
   }
 }
 </script>

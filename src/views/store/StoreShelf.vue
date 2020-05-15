@@ -21,7 +21,7 @@
   import ShelfList from '../../components/shelf/ShelfList'
   import shelfFooter from '../../components/shelf/shelfFooter'
 export default {
-mixins: [storeShelfMixin],
+  mixins: [storeShelfMixin],
   components: {
     Scroll,
     ShelfTitle,
