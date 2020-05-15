@@ -19,7 +19,7 @@
           <span class="icon-close-circle-fill"></span>
         </div>
       </div>
-      <div class="icon-locale-wrapper" v-if="!ifInputClicked" @click="switchLocale">
+      <div class="icon-locale-wrapper" v-if="!ifInputClicked" >
         <!-- <span class="icon-cn icon" v-if="lang === 'cn'"></span>
         <span class="icon-en icon" v-else></span> -->
         <span class="icon-search icon"></span>

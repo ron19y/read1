@@ -6,7 +6,7 @@
     </div>
     <div class="right">
       <div class="icon-wrapper">
-        <span class="icon-shelf"></span>
+        <span class="icon-shelf" @click="shelf"></span>
       </div>
       <div class="icon-wrapper">
         <span class="icon-cart"></span>
@@ -28,6 +28,10 @@ export default {
     back () {
       console.log('asdw')
       this.$router.go(-1)
+    },
+    shelf() {
+      console.log('go shelf')
+      this.$router.push('/store/shelf')
     }
   }
 }
