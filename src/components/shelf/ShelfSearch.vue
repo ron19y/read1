@@ -112,7 +112,6 @@ export default {
     }
   },
   mounted() {
-    console.log('df')
     setLocalStorage('locale', 'en')
   }
 }

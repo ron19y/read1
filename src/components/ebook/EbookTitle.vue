@@ -26,7 +26,6 @@ export default {
   mixins: [ebookMixin],
   methods: {
     back () {
-      console.log('asdw')
       this.$router.go(-1)
     },
     shelf() {

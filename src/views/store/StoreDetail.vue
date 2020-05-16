@@ -147,16 +147,13 @@
     methods: {
       inBookShelf() {
         var bookShelf = getBookShelf()
-        console.log(bookShelf)
         if (this.bookItem && bookShelf) {
-        console.log('inbook')
           const flatShelf = (function flatten(arr) {
             return [].concat(...arr.map(v => v.itemList ? [v, ...flatten(v.itemList)] : v))
         })(bookShelf).filter(item => item.type === 1)
           const book = flatShelf.filter(item => item.fileName === this.bookItem.fileName)
           return book && book.length > 0
         } else {
-          // console.log('false')
           return false
         }
       },
@@ -164,10 +161,8 @@
         if (this.inBookShelf()) {
           var newBookShelf = removeFromBookShelf(this.bookItem)
           saveBookShelf(newBookShelf)
-          console.log('in')
         } else {
           addToShelf(this.bookItem)
-          console.log('not')
         }
         this.isInShelf = !this.isInShelf
       },

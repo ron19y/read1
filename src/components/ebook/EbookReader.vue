@@ -113,6 +113,7 @@
       // 重复代码重构  --> 手势操作初始化
       initGesture () {
         this.rendition.on('touchstart', event => {
+        console.log('gesture')
           this.touchStartX = event.changedTouches[0].clientX
           this.touchStartTime = event.timeStamp
         })
@@ -120,6 +121,7 @@
           const offsetX = event.changedTouches[0].clientX - this.touchStartX
           const time = event.timeStamp - this.touchStartTime
           if (time < 500 && offsetX > 40) {
+            console.log('prev')
             this.prevPage()
           } else if (time < 500 && offsetX < -40) {
             this.nextPage()
@@ -129,6 +131,7 @@
           // event.preventDefault()
           event.stopPropagation()
         })
+        this.rendition.on('touch')
       },
       // 获取书籍封面 标题 作者信息
       parseBook () {
@@ -270,7 +273,6 @@
       }
     },
     mounted () {
-      console.log('maghol')
       const books = this.$route.params.fileName.split('|')
       const fileName = books[1]
       getLocalForage(fileName, (err, blob) => {
