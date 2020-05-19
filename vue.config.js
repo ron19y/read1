@@ -4,7 +4,6 @@ function mock(app, url, data) {
   })
 }
 
-const categoryList = require('./src/mock/bookCategoryList')
 const homeData = require('./src/mock/bookHome')
 const shelfData = require('./src/mock/bookShelf')
 const listData = require('./src/mock/bookList')
