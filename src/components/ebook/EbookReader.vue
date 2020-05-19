@@ -95,12 +95,13 @@
           height: innerHeight
         })
         const location = getLocation(this.fileName)
-          this.display(location, () => {
-            this.initTheme()
-            this.initFontSize()
-            this.initFontFamily()
-            this.initGlobalStyle()
+        this.display(location, () => {
+          this.initTheme()
+          this.initFontSize()
+          this.initFontFamily()
+          this.initGlobalStyle()
         })
+        // note
         this.rendition.hooks.content.register(contents => {
           Promise.all([
             contents.addStylesheet(`${process.env.VUE_APP_FONT_URL}/fonts/daysOne.css`),
@@ -131,7 +132,6 @@
           // event.preventDefault()
           event.stopPropagation()
         })
-        this.rendition.on('touch')
       },
       // 获取书籍封面 标题 作者信息
       parseBook () {
@@ -159,7 +159,7 @@
         this.book = new Epub(url)
         this.setCurrentBook(this.book)
         this.initRendition()
-        // this.initGesture()
+        this.initGesture()
         this.parseBook()
         this.book.ready.then(() => {
           return this.book.locations.generate(750 * (window.innerWidth / 375) * (getFontSize(this.fileName) / 16))
