@@ -62,12 +62,12 @@
       </div>
     </scroll>
     <div class="bottom-wrapper">
-      <div class="bottom-btn" @click.stop.prevent="readBook()">{{$t('detail.read')}}</div>
       <div class="bottom-btn" @click.stop.prevent="trialListening()">{{$t('detail.listen')}}</div>
       <div class="bottom-btn" @click.stop.prevent="addOrRemoveShelf()">
         <span class="icon-check" v-show="isInShelf"></span>
         {{isInShelf ? $t('detail.isAddedToShelf') : $t('detail.addOrRemoveShelf')}}
       </div>
+      <div class="bottom-btn" @click.stop.prevent="readBook()">{{$t('detail.read')}}</div>
     </div>
     <toast :text="toastText" ref="toast"></toast>
   </div>
@@ -288,6 +288,7 @@
         }
       },
       onScroll(offsetY) {
+        console.log('scroll')
         if (offsetY > realPx(42)) {
           this.$refs.title.showShadow()
         } else {
@@ -387,7 +388,7 @@
       box-shadow: 0 px2rem(-2) px2rem(2) rgba(0, 0, 0, .1);
       .bottom-btn {
         flex: 1;
-        color: $color-blue;
+        color: $color-deepblue;
         font-weight: bold;
         font-size: px2rem(14);
         @include center;

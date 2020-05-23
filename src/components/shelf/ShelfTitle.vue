@@ -184,8 +184,8 @@ export default {
   position: relative;
   z-index: 130;
   width: 100%;
-  height: px2rem(42);
-  background: white;
+  height: px2rem(40);
+  background: rgb(255, 255, 255);
   box-shadow: 0 px2rem(2) px2rem(2) 0 rgba(0, 0, 0, 0.1);
   &.hide-shadow {
     box-shadow: none;
@@ -217,6 +217,7 @@ export default {
     .shelf-title-btn-text {
       font-size: px2rem(14);
       color: #666;
+      font-weight: bold;
     }
     .icon-back {
       font-size: px2rem(20);

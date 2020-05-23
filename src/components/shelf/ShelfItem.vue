@@ -41,7 +41,7 @@ export default {
     onItemClick () {
       if (this.isEditMode) {
         this.data.selected = !this.data.selected
-        if (this.data.selected) {
+        if (this.data.selected && this.data.type !== 3) {
           this.shelfSelected.pushWithoutDuplicate(this.data)
         } else {
           this.setShelfSelected(

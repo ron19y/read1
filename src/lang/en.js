@@ -75,7 +75,7 @@ const messages = {
     purchase: 'By Purchase',
     bought: 'Bought',
     notPurchased: 'Not Purchased',
-    selectBook: 'Select Book',
+    selectBook: 'Select Books',
     haveSelectedBook: '$1 book has been selected',
     haveSelectedBooks: '$1 books have been selected',
     moveBook: 'Move Book',
@@ -110,8 +110,8 @@ const messages = {
     loading: 'Loading...',
     read: 'Read',
     listen: 'Listen',
-    addOrRemoveShelf: 'Add to Book Shelf',
-    isAddedToShelf: 'Added to BookShelf'
+    addOrRemoveShelf: 'Add to Shelf',
+    isAddedToShelf: 'Added to Shelf'
   },
   speak: {
     voice: 'Voice Reading',
