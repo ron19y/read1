@@ -141,7 +141,8 @@
         trialText: null,
         categoryText: null,
         opf: null,
-        isInShelf: false
+        isInShelf: false,
+        isready: false
       }
     },
     methods: {
